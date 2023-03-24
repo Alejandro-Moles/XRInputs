@@ -64,6 +64,8 @@ struct IntegratedSubsystem_1_tF93BC76362E85BDD215312162457BE510FC76D3B;
 struct IntegratedSubsystem_1_t3AB3A9BAB10A4D1420E63EEA50D40FEE65F41C03;
 // System.Collections.Generic.List`1<UnityEngine.XR.InputDevice>
 struct List_1_tB66D13E0427CA48C600AEA4DBA5B173C3734C6CE;
+// System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>
+struct List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D;
 // System.Collections.Generic.List`1<System.UInt64>
 struct List_1_tB88E7361EE76DFB3EBB7FCD60CC59ACC3E48C284;
 // System.Collections.Generic.List`1<UnityEngine.XR.XRInputSubsystem>
@@ -76,6 +78,8 @@ struct CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB;
 struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
 // UnityEngine.XR.InputDevice[]
 struct InputDeviceU5BU5D_t1361FC6DDFE12D211F933B024E51B7E5CF073F63;
+// UnityEngine.XR.InputFeatureUsage[]
+struct InputFeatureUsageU5BU5D_tFD13D6C127DFF10CE7CC6D6DABF07C2C44021055;
 // System.IntPtr[]
 struct IntPtrU5BU5D_tFD177F8C806A6921AD7150264CCC62FA00CAD832;
 // System.Diagnostics.StackTrace[]
@@ -285,6 +289,25 @@ struct List_1_tB66D13E0427CA48C600AEA4DBA5B173C3734C6CE_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	InputDeviceU5BU5D_t1361FC6DDFE12D211F933B024E51B7E5CF073F63* ___s_emptyArray_5;
+};
+
+// System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>
+struct List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D  : public RuntimeObject
+{
+	// T[] System.Collections.Generic.List`1::_items
+	InputFeatureUsageU5BU5D_tFD13D6C127DFF10CE7CC6D6DABF07C2C44021055* ____items_1;
+	// System.Int32 System.Collections.Generic.List`1::_size
+	int32_t ____size_2;
+	// System.Int32 System.Collections.Generic.List`1::_version
+	int32_t ____version_3;
+	// System.Object System.Collections.Generic.List`1::_syncRoot
+	RuntimeObject* ____syncRoot_4;
+};
+
+struct List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D_StaticFields
+{
+	// T[] System.Collections.Generic.List`1::s_emptyArray
+	InputFeatureUsageU5BU5D_tFD13D6C127DFF10CE7CC6D6DABF07C2C44021055* ___s_emptyArray_5;
 };
 
 // System.Collections.Generic.List`1<UnityEngine.XR.XRNodeState>
@@ -1869,10 +1892,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevice_get_isValid_mA908CF8195CECA4
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* InputDevices_GetDeviceName_m0AC6649B2A6AF0394487068FC82DFFA6D33A3D92 (uint64_t ___deviceId0, const RuntimeMethod* method) ;
 // System.String UnityEngine.XR.InputDevice::get_name()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* InputDevice_get_name_mAEA08A3755E715697022C54227556428CEF4E1CE (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, const RuntimeMethod* method) ;
-// UnityEngine.XR.InputDeviceCharacteristics UnityEngine.XR.InputDevices::GetDeviceCharacteristics(System.UInt64)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevices_GetDeviceCharacteristics_m484271629C390D593B073791099D05EC8F45CDF9 (uint64_t ___deviceId0, const RuntimeMethod* method) ;
-// UnityEngine.XR.InputDeviceCharacteristics UnityEngine.XR.InputDevice::get_characteristics()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevice_get_characteristics_mEEDC9AB2254C155C47B48848FECF347A87925ADB (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, const RuntimeMethod* method) ;
+// UnityEngine.XR.InputDeviceRole UnityEngine.XR.InputDevices::GetDeviceRole(System.UInt64)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevices_GetDeviceRole_m929A6C663EC2455C495D176D8D3A6927D65E94D8 (uint64_t ___deviceId0, const RuntimeMethod* method) ;
+// UnityEngine.XR.InputDeviceRole UnityEngine.XR.InputDevice::get_role()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevice_get_role_m8A5CD735B1BD8E9712A75CB734092C443452925E (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, const RuntimeMethod* method) ;
 // System.Void System.ArgumentException::.ctor(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArgumentException__ctor_m026938A67AF9D36BB7ED27F80425D7194B514465 (ArgumentException_tAD90411542A20A9C72D5CDA3A84181D8B947A263* __this, String_t* ___message0, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.InputDevices::SendHapticImpulse(System.UInt64,System.UInt32,System.Single,System.Single)
@@ -1888,6 +1911,10 @@ inline bool InputDevice_CheckValidAndSetDefault_TisHapticCapabilities_t4F7DFEDA7
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevices_TryGetHapticCapabilities_mBCEC7D1AE8C869608B3FF5D05EF2629729B91CA7 (uint64_t ___deviceId0, HapticCapabilities_t4F7DFEDA7457938D39B877F6A86901F7A6788211* ___capabilities1, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.InputDevice::TryGetHapticCapabilities(UnityEngine.XR.HapticCapabilities&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevice_TryGetHapticCapabilities_mC97EE9A231941988E8B6FA8AF0CB310EFE1B77A3 (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, HapticCapabilities_t4F7DFEDA7457938D39B877F6A86901F7A6788211* ___capabilities0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.InputDevices::TryGetFeatureUsages(System.UInt64,System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4 (uint64_t ___deviceId0, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* ___featureUsages1, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.InputDevice::TryGetFeatureUsages(System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevice_TryGetFeatureUsages_mFD9F3CE1465177544260CEB32E1821AA0FDD24AC (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* ___featureUsages0, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.InputDevice::CheckValidAndSetDefault<System.Boolean>(T&)
 inline bool InputDevice_CheckValidAndSetDefault_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_mED7DBE29D514108C95BCEA0CC535A55DA2610366 (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, bool* ___value0, const RuntimeMethod* method)
 {
@@ -2021,6 +2048,8 @@ inline void Action_1_Invoke_m711ABCFDFDF3836EE35ED7CD7E5B3FAD04EAE649_inline (Ac
 {
 	((  void (*) (Action_1_tFAB0B519749BBE2B7AAD946105FAE8116636A8BC*, InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD, const RuntimeMethod*))Action_1_Invoke_m711ABCFDFDF3836EE35ED7CD7E5B3FAD04EAE649_gshared_inline)(__this, ___obj0, method);
 }
+// UnityEngine.XR.InputDeviceCharacteristics UnityEngine.XR.InputDevices::GetDeviceCharacteristics(System.UInt64)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevices_GetDeviceCharacteristics_m484271629C390D593B073791099D05EC8F45CDF9 (uint64_t ___deviceId0, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.XRNodeState>::Clear()
 inline void List_1_Clear_m81D40B541187099D5EDD207395C9FC477BADEF03_inline (List_1_t8AE5A65CCFBC753343962D38B82C801F7BDE3C87* __this, const RuntimeMethod* method)
 {
@@ -3456,8 +3485,8 @@ IL2CPP_EXTERN_C  String_t* InputDevice_get_name_mAEA08A3755E715697022C5422755642
 	_returnValue = InputDevice_get_name_mAEA08A3755E715697022C54227556428CEF4E1CE(_thisAdjusted, method);
 	return _returnValue;
 }
-// UnityEngine.XR.InputDeviceCharacteristics UnityEngine.XR.InputDevice::get_characteristics()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevice_get_characteristics_mEEDC9AB2254C155C47B48848FECF347A87925ADB (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, const RuntimeMethod* method) 
+// UnityEngine.XR.InputDeviceRole UnityEngine.XR.InputDevice::get_role()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevice_get_role_m8A5CD735B1BD8E9712A75CB734092C443452925E (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, const RuntimeMethod* method) 
 {
 	uint32_t V_0 = 0;
 	int32_t G_B3_0 = 0;
@@ -3478,7 +3507,7 @@ IL_000c:
 	{
 		uint64_t L_1 = __this->___m_DeviceId_1;
 		uint32_t L_2;
-		L_2 = InputDevices_GetDeviceCharacteristics_m484271629C390D593B073791099D05EC8F45CDF9(L_1, NULL);
+		L_2 = InputDevices_GetDeviceRole_m929A6C663EC2455C495D176D8D3A6927D65E94D8(L_1, NULL);
 		G_B3_0 = ((int32_t)(L_2));
 	}
 
@@ -3494,13 +3523,13 @@ IL_001a:
 		return L_3;
 	}
 }
-IL2CPP_EXTERN_C  uint32_t InputDevice_get_characteristics_mEEDC9AB2254C155C47B48848FECF347A87925ADB_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+IL2CPP_EXTERN_C  uint32_t InputDevice_get_role_m8A5CD735B1BD8E9712A75CB734092C443452925E_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
 {
 	InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* _thisAdjusted;
 	int32_t _offset = 1;
 	_thisAdjusted = reinterpret_cast<InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD*>(__this + _offset);
 	uint32_t _returnValue;
-	_returnValue = InputDevice_get_characteristics_mEEDC9AB2254C155C47B48848FECF347A87925ADB(_thisAdjusted, method);
+	_returnValue = InputDevice_get_role_m8A5CD735B1BD8E9712A75CB734092C443452925E(_thisAdjusted, method);
 	return _returnValue;
 }
 // System.Boolean UnityEngine.XR.InputDevice::IsValidId()
@@ -3662,6 +3691,51 @@ IL2CPP_EXTERN_C  bool InputDevice_TryGetHapticCapabilities_mC97EE9A231941988E8B6
 	_thisAdjusted = reinterpret_cast<InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD*>(__this + _offset);
 	bool _returnValue;
 	_returnValue = InputDevice_TryGetHapticCapabilities_mC97EE9A231941988E8B6FA8AF0CB310EFE1B77A3(_thisAdjusted, ___capabilities0, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.InputDevice::TryGetFeatureUsages(System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevice_TryGetFeatureUsages_mFD9F3CE1465177544260CEB32E1821AA0FDD24AC (InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* __this, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* ___featureUsages0, const RuntimeMethod* method) 
+{
+	bool V_0 = false;
+	bool V_1 = false;
+	{
+		bool L_0;
+		L_0 = InputDevice_IsValidId_m13527A66E7D03B0C9AA64C2FFCC4A2F3889756BB(__this, NULL);
+		V_0 = L_0;
+		bool L_1 = V_0;
+		if (!L_1)
+		{
+			goto IL_001a;
+		}
+	}
+	{
+		uint64_t L_2 = __this->___m_DeviceId_1;
+		List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* L_3 = ___featureUsages0;
+		bool L_4;
+		L_4 = InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4(L_2, L_3, NULL);
+		V_1 = L_4;
+		goto IL_001e;
+	}
+
+IL_001a:
+	{
+		V_1 = (bool)0;
+		goto IL_001e;
+	}
+
+IL_001e:
+	{
+		bool L_5 = V_1;
+		return L_5;
+	}
+}
+IL2CPP_EXTERN_C  bool InputDevice_TryGetFeatureUsages_mFD9F3CE1465177544260CEB32E1821AA0FDD24AC_AdjustorThunk (RuntimeObject* __this, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* ___featureUsages0, const RuntimeMethod* method)
+{
+	InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<InputDevice_t882EE3EE8A71D8F5F38BA3F9356A49F24510E8BD*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = InputDevice_TryGetFeatureUsages_mFD9F3CE1465177544260CEB32E1821AA0FDD24AC(_thisAdjusted, ___featureUsages0, method);
 	return _returnValue;
 }
 // System.Boolean UnityEngine.XR.InputDevice::TryGetFeatureValue(UnityEngine.XR.InputFeatureUsage`1<System.Boolean>,System.Boolean&)
@@ -4937,6 +5011,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevices_TryGetHapticCapabilities_mB
 	bool icallRetVal = _il2cpp_icall_func(___deviceId0, ___capabilities1);
 	return icallRetVal;
 }
+// System.Boolean UnityEngine.XR.InputDevices::TryGetFeatureUsages(System.UInt64,System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4 (uint64_t ___deviceId0, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D* ___featureUsages1, const RuntimeMethod* method) 
+{
+	typedef bool (*InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4_ftn) (uint64_t, List_1_t07514DE4C099E3518E38FC1CBA5156D78A6BFE6D*);
+	static InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (InputDevices_TryGetFeatureUsages_m0F8BDF0C21C67D051D24EC4C0D3F9CF3CB4106B4_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.XR.InputDevices::TryGetFeatureUsages(System.UInt64,System.Collections.Generic.List`1<UnityEngine.XR.InputFeatureUsage>)");
+	bool icallRetVal = _il2cpp_icall_func(___deviceId0, ___featureUsages1);
+	return icallRetVal;
+}
 // System.Boolean UnityEngine.XR.InputDevices::TryGetFeatureValue_bool(System.UInt64,System.String,System.Boolean&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool InputDevices_TryGetFeatureValue_bool_mD652BFAC63C19FFE34BA0E552A764C655402F0F2 (uint64_t ___deviceId0, String_t* ___usage1, bool* ___value2, const RuntimeMethod* method) 
 {
@@ -5026,6 +5110,122 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevices_GetDeviceCharacteristic
 	_il2cpp_icall_func = (InputDevices_GetDeviceCharacteristics_m484271629C390D593B073791099D05EC8F45CDF9_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.XR.InputDevices::GetDeviceCharacteristics(System.UInt64)");
 	uint32_t icallRetVal = _il2cpp_icall_func(___deviceId0);
 	return icallRetVal;
+}
+// UnityEngine.XR.InputDeviceRole UnityEngine.XR.InputDevices::GetDeviceRole(System.UInt64)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t InputDevices_GetDeviceRole_m929A6C663EC2455C495D176D8D3A6927D65E94D8 (uint64_t ___deviceId0, const RuntimeMethod* method) 
+{
+	uint32_t V_0 = 0;
+	bool V_1 = false;
+	uint32_t V_2 = 0;
+	bool V_3 = false;
+	bool V_4 = false;
+	bool V_5 = false;
+	bool V_6 = false;
+	bool V_7 = false;
+	{
+		uint64_t L_0 = ___deviceId0;
+		uint32_t L_1;
+		L_1 = InputDevices_GetDeviceCharacteristics_m484271629C390D593B073791099D05EC8F45CDF9(L_0, NULL);
+		V_0 = L_1;
+		uint32_t L_2 = V_0;
+		V_1 = (bool)((((int32_t)((int32_t)((int32_t)L_2&((int32_t)33)))) == ((int32_t)((int32_t)33)))? 1 : 0);
+		bool L_3 = V_1;
+		if (!L_3)
+		{
+			goto IL_0018;
+		}
+	}
+	{
+		V_2 = 1;
+		goto IL_0086;
+	}
+
+IL_0018:
+	{
+		uint32_t L_4 = V_0;
+		V_3 = (bool)((((int32_t)((int32_t)((int32_t)L_4&((int32_t)292)))) == ((int32_t)((int32_t)292)))? 1 : 0);
+		bool L_5 = V_3;
+		if (!L_5)
+		{
+			goto IL_002e;
+		}
+	}
+	{
+		V_2 = 2;
+		goto IL_0086;
+	}
+
+IL_002e:
+	{
+		uint32_t L_6 = V_0;
+		V_4 = (bool)((((int32_t)((int32_t)((int32_t)L_6&((int32_t)548)))) == ((int32_t)((int32_t)548)))? 1 : 0);
+		bool L_7 = V_4;
+		if (!L_7)
+		{
+			goto IL_0046;
+		}
+	}
+	{
+		V_2 = 3;
+		goto IL_0086;
+	}
+
+IL_0046:
+	{
+		uint32_t L_8 = V_0;
+		V_5 = (bool)((((int32_t)((int32_t)((int32_t)L_8&((int32_t)64)))) == ((int32_t)((int32_t)64)))? 1 : 0);
+		bool L_9 = V_5;
+		if (!L_9)
+		{
+			goto IL_0058;
+		}
+	}
+	{
+		V_2 = 4;
+		goto IL_0086;
+	}
+
+IL_0058:
+	{
+		uint32_t L_10 = V_0;
+		V_6 = (bool)((((int32_t)((int32_t)((int32_t)L_10&((int32_t)160)))) == ((int32_t)((int32_t)160)))? 1 : 0);
+		bool L_11 = V_6;
+		if (!L_11)
+		{
+			goto IL_0070;
+		}
+	}
+	{
+		V_2 = 5;
+		goto IL_0086;
+	}
+
+IL_0070:
+	{
+		uint32_t L_12 = V_0;
+		V_7 = (bool)((((int32_t)((int32_t)((int32_t)L_12&((int32_t)32)))) == ((int32_t)((int32_t)32)))? 1 : 0);
+		bool L_13 = V_7;
+		if (!L_13)
+		{
+			goto IL_0082;
+		}
+	}
+	{
+		V_2 = 6;
+		goto IL_0086;
+	}
+
+IL_0082:
+	{
+		V_2 = 0;
+		goto IL_0086;
+	}
+
+IL_0086:
+	{
+		uint32_t L_14 = V_2;
+		return L_14;
+	}
 }
 #ifdef __clang__
 #pragma clang diagnostic pop
