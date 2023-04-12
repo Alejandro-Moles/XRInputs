@@ -11,13 +11,14 @@ public class ControllersBehaviour : MonoBehaviour
     private bool leftPrimaryTouch;
     private bool rightPrimaryTouch;
 
-    public TextMeshProUGUI Pantalla_2, Pantalla_1;
+    public TextMeshProUGUI Pantalla_2, Pantalla_1, Pantalla_Ordenador_1, Pantalla_Ordenador_2, Pantalla_Ordenador_3;
 
     private bool botonPantalla_2 = true;
     public string textPantalla2;
 
     public GameObject Panel_Botones_1, Panel_Botones_2;
 
+    //Mandos
     public bool MandoIActivate;
     public bool MandoDActivate;
 
@@ -40,6 +41,38 @@ public class ControllersBehaviour : MonoBehaviour
     [Header("Aceleracion")]
     public Vector3 AceleracionMandoI;
     public Vector3 AceleracionMandoD;
+
+    [Header("Secondary")]
+    public bool SecondaryTouch;
+    public bool secondaryButton;
+
+    [Header("GripButton")]
+    public bool GripButton;
+
+    [Header("Gip Sensibilidad")]
+    public float GripSensi;
+
+    //Gafas
+    public bool GafasActivate;
+
+    [Header("Gafa Puestas")]
+    public bool GafasPuestas;
+
+    [Header("PosicionOjo")]
+    public Vector3 PosicionOjoI;
+    public Vector3 PosicionOjoD;
+
+    [Header("VelocidadOjo")]
+    public Vector3 VelocidadOjoI;
+    public Vector3 VelocidadOjoD;
+
+    [Header("Rotacion Ojos")]
+    public Quaternion RotacionOjoI;
+    public Quaternion RotacionOjoD;
+
+    [Header("Rotacion Gafas")]
+    public Quaternion RotacionGafas;
+
     #endregion
 
     #region Metodos Unity
@@ -55,11 +88,17 @@ public class ControllersBehaviour : MonoBehaviour
 
     private void Update()
     {
+        //Mando
         detectTouchPrimaryButton();
         DetectarGatillo();
         DetectarJoystick();
         DetectarVelocidad();
         DetectarAceleracion();
+
+        //Gafas
+        DetectarGafasPuestas();
+        DetectarPosicionOjos();
+        DetectarVelocidadOjos();
 
         if (MandoIActivate)
         {
@@ -70,14 +109,23 @@ public class ControllersBehaviour : MonoBehaviour
         {
             MostrarGetFeaturesMandoD();
         }
-        
+
+        if (GafasActivate)
+        {
+            MostrarGetFeaturesGafas();
+        }
+
+        MuestraPantallaOrdenador_1();
+        MuestraPantallaOrdenador_2();
+        MuestraPantallaOrdenador_3();
+
     }
     #endregion
 
     #region Metodos Propios
     
 
-    #region Caracteristicas Dispositivo
+    #region Caracteristicas Dispositivos
     //Primary Touch
     private void detectTouchPrimaryButton()
     {
@@ -91,7 +139,6 @@ public class ControllersBehaviour : MonoBehaviour
     {
         MandoIGatillo = devices[1].TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out MandoIGatillo);
         MandoDGatillo = devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out MandoDGatillo);
-
     }
 
     //Joystick
@@ -114,6 +161,64 @@ public class ControllersBehaviour : MonoBehaviour
         devices[1].TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceAcceleration, out AceleracionMandoI);
         devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceAcceleration, out AceleracionMandoD);
     }
+
+    //Gafas Puestas
+    private void DetectarGafasPuestas()
+    {
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.userPresence, out GafasPuestas);
+    }
+
+    //Posicion de los Ojos
+    private void DetectarPosicionOjos()
+    {
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.leftEyePosition, out PosicionOjoI);
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.rightEyePosition, out PosicionOjoD);
+    }
+
+    //Velocidad de los Ojos
+    private void DetectarVelocidadOjos()
+    {
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.leftEyeVelocity, out VelocidadOjoI);
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.rightEyeVelocity, out VelocidadOjoD);
+    }
+
+    //Rotacion de los ojos
+    public void DetectarRotacionOjos()
+    {
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.leftEyeRotation, out RotacionOjoI);
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.rightEyeRotation, out RotacionOjoD);
+    }
+
+    //Rotacion
+    public void DetectarRotacion()
+    {
+        devices[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out RotacionGafas);
+    }
+
+    //GripButton
+    public void DetectarGripButton()
+    {
+        devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out GripButton);
+    }
+
+    //Sensibilidad Grip
+    public void DetectarGripSensi()
+    {
+        devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out GripSensi);
+    }
+
+    //Secondary Touch
+    public void DetectarSecondaryTouch()
+    {
+        devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryTouch, out SecondaryTouch);
+    }
+
+    //Secondaty button
+    public void DetectarSecondatuButton()
+    {
+        devices[2].TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out secondaryButton);
+    }
+
     #endregion
 
     #region Muestra las Caracteristicas de dispositivos
@@ -201,7 +306,6 @@ public class ControllersBehaviour : MonoBehaviour
     }
     #endregion
 
-
     #region Metodos Que tocan las pantallas
     public void MostrarGetFeaturesMandoI()
     {
@@ -223,28 +327,59 @@ public class ControllersBehaviour : MonoBehaviour
         Pantalla_1.text += "\nAceleracion : " + AceleracionMandoD.ToString();
     }
 
-    private IEnumerator EscribeTexto(string frase, float tiempo)
+    public void MostrarGetFeaturesGafas()
     {
-        Pantalla_2.text = "";
-
-        foreach (char character in frase)
-        {
-            Pantalla_2.text = Pantalla_2.text + character;
-            yield return new WaitForSeconds(tiempo);
-        }
+        Pantalla_1.text = "Gafas";
+        Pantalla_1.text += "\nGafas Puestas : " + GafasPuestas.ToString();
+        Pantalla_1.text += "\nPosicion Ojo Derecho : " + PosicionOjoD.ToString();
+        Pantalla_1.text += "\nPosicion Ojo Izquierdo : " + PosicionOjoI.ToString();
+        Pantalla_1.text += "\nVelocidad Ojo Derecho : " + VelocidadOjoD.ToString();
+        Pantalla_1.text += "\nVelocidad Ojo Izquierdo : " + VelocidadOjoI.ToString();
     }
+
+    public void MuestraPantallaOrdenador_1()
+    {
+        Pantalla_Ordenador_1.text = "Gafas";
+        Pantalla_Ordenador_1.text += "\nRotacion Ojo Derecho" + RotacionOjoD.ToString();
+        Pantalla_Ordenador_1.text += "\nRotacion Ojo Izquierdo" + RotacionOjoI.ToString();
+        Pantalla_Ordenador_1.text += "\n Rotacion Gafas : " + RotacionGafas.ToString();
+    }
+
+    public void MuestraPantallaOrdenador_2()
+    {
+        Pantalla_Ordenador_2.text = "Mandos";
+        Pantalla_Ordenador_2.text += "\nGrip Button" + GripButton.ToString();
+        Pantalla_Ordenador_2.text += "\nGrip Sensi" + GripSensi.ToString();
+    }
+
+    public void MuestraPantallaOrdenador_3()
+    {
+        Pantalla_Ordenador_3.text = "Mandos";
+        Pantalla_Ordenador_3.text += "\nSecondary Touch" + SecondaryTouch.ToString();
+        Pantalla_Ordenador_3.text += "\nSecondaty Button" + secondaryButton.ToString();
+    }
+
     #endregion
 
     public void ActivarMandoI()
     {
         MandoIActivate = true;
         MandoDActivate= false;
+        GafasActivate= false;
     }
     
     public void ActivarMandoD()
     {
         MandoIActivate = false;
         MandoDActivate= true;
+        GafasActivate= false;
+    }
+
+    public void ActivarGafas()
+    {
+        MandoIActivate = false;
+        MandoDActivate = false;
+        GafasActivate = true;
     }
 
     public void MuestraDipositivos()
@@ -256,6 +391,17 @@ public class ControllersBehaviour : MonoBehaviour
         }
 
         StartCoroutine(EscribeTexto(textPantalla2, 0.05f));
+    }
+
+    private IEnumerator EscribeTexto(string frase, float tiempo)
+    {
+        Pantalla_2.text = "";
+
+        foreach (char character in frase)
+        {
+            Pantalla_2.text = Pantalla_2.text + character;
+            yield return new WaitForSeconds(tiempo);
+        }
     }
 
     #endregion
