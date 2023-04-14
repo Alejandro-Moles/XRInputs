@@ -73,11 +73,16 @@ public class ControllersBehaviour : MonoBehaviour
     [Header("Rotacion Gafas")]
     public Quaternion RotacionGafas;
 
+
+    //Tablet 
+    [SerializeField] private TextMeshProUGUI Tablet;
+    [SerializeField] private GameObject Tablet_GameObject;
     #endregion
 
     #region Metodos Unity
     void Start()
     {
+        Tablet_GameObject.SetActive(false);
         Panel_Botones_1.SetActive(true);
         Panel_Botones_2.SetActive(false);
 
@@ -119,6 +124,7 @@ public class ControllersBehaviour : MonoBehaviour
         MuestraPantallaOrdenador_2();
         MuestraPantallaOrdenador_3();
 
+        TextoTablet();
     }
     #endregion
 
@@ -236,10 +242,9 @@ public class ControllersBehaviour : MonoBehaviour
         {
             foreach (var feature in inputFeatures)
             {
-                text += string.Format("Feature : '{0}'", feature.name);
+                Pantalla_2.text += string.Format("Feature : '{0}'", feature.name);
             }
         }
-        StartCoroutine(EscribeTexto(text, 0.05f));
     }
 
     public void MuestraCaracteristicasMandoD()
@@ -256,10 +261,9 @@ public class ControllersBehaviour : MonoBehaviour
         {
             foreach (var feature in inputFeatures)
             {
-                text += string.Format("Feature : '{0}'", feature.name);
+                Pantalla_2.text += string.Format("Feature : '{0}'", feature.name);
             }
         }
-        StartCoroutine(EscribeTexto(text, 0.05f));
     }
 
     public void MuestraCaracteristicasMandoI()
@@ -276,10 +280,9 @@ public class ControllersBehaviour : MonoBehaviour
         {
             foreach (var feature in inputFeatures)
             {
-                text += string.Format("Feature : '{0}'", feature.name);
+                Pantalla_2.text += string.Format("Feature : '{0}'", feature.name);
             }
         }
-        StartCoroutine(EscribeTexto(text, 0.05f));
     }
     #endregion
 
@@ -359,6 +362,15 @@ public class ControllersBehaviour : MonoBehaviour
         Pantalla_Ordenador_3.text += "\nSecondaty Button" + secondaryButton.ToString();
     }
 
+    public void TextoTablet()
+    {
+        Tablet.text = "Mandos";
+        Tablet.text += "\nGrip Button" + GripButton.ToString();
+        Tablet.text += "\nGrip Sensi" + GripSensi.ToString();
+        Tablet.text += "\nGrip Button" + GripButton.ToString();
+        Tablet.text += "\nGrip Sensi" + GripSensi.ToString();
+    }
+
     #endregion
 
     public void ActivarMandoI()
@@ -387,10 +399,10 @@ public class ControllersBehaviour : MonoBehaviour
         //Muestra todas las caracteristicas de todos los dipositivos
         foreach (var device in devices)
         {
-            textPantalla2 += string.Format("\nDispositivo : w'{0}' \nRol : '{1}'", device.name, device.role.ToString());
+            Pantalla_2.text += string.Format("\nDispositivo : w'{0}' \nRol : '{1}'", device.name, device.role.ToString());
         }
 
-        StartCoroutine(EscribeTexto(textPantalla2, 0.05f));
+       
     }
 
     private IEnumerator EscribeTexto(string frase, float tiempo)
@@ -402,6 +414,16 @@ public class ControllersBehaviour : MonoBehaviour
             Pantalla_2.text = Pantalla_2.text + character;
             yield return new WaitForSeconds(tiempo);
         }
+    }
+
+    public void ActivateTablet()
+    {
+        Tablet_GameObject.SetActive(true);
+    }
+
+    public void DesactivateTablet()
+    {
+        Tablet_GameObject.SetActive(false);
     }
 
     #endregion
